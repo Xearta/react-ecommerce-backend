@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_214011) do
+ActiveRecord::Schema.define(version: 2020_08_13_144729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "user_id"
+    t.jsonb "cartItems"
+    t.jsonb "shipping"
+    t.jsonb "payment"
+    t.float "itemsPrice"
+    t.float "taxPrice"
+    t.float "shippingPrice"
+    t.float "totalPrice"
+    t.boolean "isPaid", default: false
+    t.date "paidAt"
+    t.boolean "isDelivered", default: false
+    t.date "deliveredAt"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -31,13 +48,14 @@ ActiveRecord::Schema.define(version: 2020_08_12_214011) do
     t.integer "countInStock"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "isAdmin", default: false
   end
 
 end
