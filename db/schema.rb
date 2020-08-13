@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_144729) do
+ActiveRecord::Schema.define(version: 2020_08_13_222919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -41,11 +41,20 @@ ActiveRecord::Schema.define(version: 2020_08_13_144729) do
     t.float "price"
     t.string "brand"
     t.float "rating"
+    t.integer "countInStock"
     t.integer "numReviews"
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "countInStock"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "product_id"
+    t.string "name"
+    t.integer "rating"
+    t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,9 +62,9 @@ ActiveRecord::Schema.define(version: 2020_08_13_144729) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "isAdmin", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "isAdmin", default: false
   end
 
 end
