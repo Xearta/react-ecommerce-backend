@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_182906) do
+ActiveRecord::Schema.define(version: 2020_08_12_214011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2020_08_12_182906) do
     t.float "rating"
     t.integer "numReviews"
     t.boolean "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "countInStock"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
