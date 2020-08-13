@@ -42,9 +42,20 @@ def show
           }
           end
     end
+
+# PATCH/PUT /users/1
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
 private
     
    def user_params
-       params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :isAdmin)
+       params.permit(:id, :first_name, :last_name, :email, :password, :password_confirmation, :isAdmin)
    end
 end
