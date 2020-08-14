@@ -1,4 +1,4 @@
 class ProductSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :category, :image, :price, :brand, 
-  :rating, :numReviews, :status, :countInStock, :reviews
+  :rating, :numReviews, :countInStock, :reviews
 end

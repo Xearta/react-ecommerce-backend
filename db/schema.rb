@@ -40,10 +40,9 @@ ActiveRecord::Schema.define(version: 2020_08_13_222919) do
     t.string "description"
     t.float "price"
     t.string "brand"
-    t.float "rating"
+    t.float "rating", default: 0.0
     t.integer "countInStock"
-    t.integer "numReviews"
-    t.boolean "status"
+    t.integer "numReviews", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -62,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_222919) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
-    t.boolean "isAdmin", default: true
+    t.boolean "isAdmin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

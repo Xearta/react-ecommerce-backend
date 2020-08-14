@@ -15,19 +15,6 @@ class Api::V1::ReviewsController < ApplicationController
   # POST /reviews
   def create
     @review = @product.reviews.new(review_params)
-    @product.numReviews = @product.reviews.length;
-    
-    # Set the product rating when adding a review
-    ratingsArray = []
-    @product.reviews.each do |review|
-        ratingsArray << review.rating
-    end
-
-    @product.rating = (ratingsArray.reduce(:+) / @product.reviews.length.to_f)
-
-    binding.pry
-
-    @product.save
     @review.save
       render json: @product
   end

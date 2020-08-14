@@ -5,11 +5,13 @@ class Api::V1::ProductsController < ApplicationController
   def index
     @products = Product.all
 
+
     render json: @products
   end
 
   # GET /products/1
   def show
+    @product.update_product
     render json: @product
   end
 
@@ -46,6 +48,6 @@ class Api::V1::ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.require(:product).permit(:name, :category, :description, :image, :price, :brand, :rating, :numReviews, :status, :countInStock)
+      params.require(:product).permit(:name, :category, :description, :image, :price, :brand, :rating, :numReviews, :countInStock)
     end
 end

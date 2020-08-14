@@ -7,10 +7,9 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :description
       t.float :price
       t.string :brand
-      t.float :rating
+      t.float :rating, default: 0.0
       t.integer :countInStock
-      t.integer :numReviews
-      t.boolean :status
+      t.integer :numReviews, default: 0
       t.timestamps
     end
   end
