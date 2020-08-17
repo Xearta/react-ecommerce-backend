@@ -4,6 +4,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :first_name
       t.string :last_name
       t.string :email
+      t.jsonb :shipping
+      t.jsonb :payment
       t.string :password_digest
       t.boolean :isAdmin, default: false
       t.timestamps

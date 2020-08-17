@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 2020_08_13_222919) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
+    t.jsonb "shipping"
+    t.jsonb "payment"
     t.string "password_digest"
     t.boolean "isAdmin", default: false
     t.datetime "created_at", precision: 6, null: false
